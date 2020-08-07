@@ -14,6 +14,8 @@ restService.use(
 restService.use(bodyParser.json());
 
 restService.post("/echo", function(req, res) {
+  
+  //this is the part that gets the speech input from the microphone
   var speech =
     req.body.queryResult &&
     req.body.queryResult.parameters &&
@@ -21,6 +23,8 @@ restService.post("/echo", function(req, res) {
       ? req.body.queryResult.parameters.echoText
       : "Seems like some problem. Speak again.";
   
+  
+  //this is the part that sends the speech var back to google as the response
   var speechResponse = {
     google: {
       expectUserResponse: true,
